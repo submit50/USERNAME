@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #circle1 {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            left: 70%;
+            transform: translate(20% 70%);
+            border-radius: 75px;
+            background-image: url('https://i.pinimg.com/originals/0f/91/b1/0f91b10a15c5f18ac00e39b21a417e4c.jpg');
+            background-size: cover;
+            display: initial;
+        }
+        
+        #circle2 {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            left: 70%;
+            transform: translate(60% 70%);
+            border-radius: 75px;
+            background-image: url('https://previews.123rf.com/images/tomwang/tomwang1908/tomwang190800036/128378130-happy-elementary-school-kids-in-classroom.jpg');
+            background-size: cover;
+            display: initial;
+        }
+        
+        .sec {
+            font-size: 20px;
+            color: darkblue;
+            font-weight: 500;
+            font-family: cursive;
+        }
+        
+        .content {
+            content: '';
+            position: relative;
+            width: 300px;
+            height: 400px;
+            top: 1%;
+            left: 10%;
+            transform: translate(1% 10%);
+            text-size-adjust: 15px;
+        }
+        
+        .container {
+            content: '';
+            position: absolute;
+            width: 750px;
+            height: 600px;
+            top: 1%;
+            left: 45%;
+            transform: translate(1% 45%);
+            background-color: springgreen;
+        }
+        
+        .part {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            top: 1%;
+            left: 1%;
+            transform: translate(1% 1%);
+            background: #00ffff;
+            text-align: center;
+            box-shadow: 0px, 5px, 10px, rgba(0, 0, 0.1, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="part">
+        <center>
+            <h1> Registration Form </h1>
+            <table>
+                <tr>
+                    <td>
+                        <label class="sec" for="UniqID"> User ID: </label>
+                    </td>
+                    <td>
+                        <input type="text" name="UniqID" id="UniqID"><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="sec" for="Name"> Name: </label>
+                    </td>
+                    <td>
+                        <input type="text" name="Name" id="Name"><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="sec" for="EmailId"> EmailId: </label>
+                    </td>
+                    <td>
+                        <input type="text" name="EmailId" id="EmailId"><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="sec" for="PhoneNo"> Phone No: </label>
+                    </td>
+                    <td>
+                        <input type="text" name="PhoneNo" id="PhoneNo"><br><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="sec" for="Profession"> Profession: </label>
+                    </td>
+                    <td>
+                        <input type="text" name="Profession" id="Profession"><br><br>
+                    </td>
+                </tr>
+            </table>
+            <button id="addBtn" onclick="submitClick()" class="btn waves-effect waves-light">ADD</button>
+            <form action="/del" method="GET">
+                <button type="submit" value="submit">Next</button>
+            </form>
+        </center>
+    </div>
+    <div class="container">
+        <i><h2 style="font-size: 40px;
+                   font-family: cursive;">
+            <marquee>TIME TABLE</marquee>
+        </h2></i>
+        <div class="content">
+            <h3><i>INTRODUCTION</i></h3>
+            <p style="text-align: justify;
+                      font-size: 20px;"><i>Timetable is specially build with all the possible features that
+                           required to maintain all the class in particular department. Here If the employee
+                            already given the information then he needs to register first. If already registered 
+                            then you will get all information from query. If there is any problem with the system 
+                            you can send the problem to admin. If any issue with your class time you will be informed 
+                            before the class. And here the system generated concious message will reach to you with
+                            email.
+            </i></p>
+        </div>
+        <div id="circle1"></div>
+        <div id="circle2"></div>
+    </div>
+</body>
+<script>
+    let uid = document.getElementById('UniqID');
+    let name = document.getElementById('Name');
+    let email = document.getElementById('EmailId');
+    let phone = document.getElementById('PhoneNo');
+    let prof = document.getElementById('Profession');
+
+    const submitClick = () => {
+
+        const doc = {
+            uid: uid.value,
+            name: name.value,
+            email: email.value,
+            phone: phone.value,
+            prof: prof.value
+        }
+
+        axios.post('/saveprofile', doc)
+    }
+</script>
+
+</html>
